@@ -1,0 +1,137 @@
+﻿<Window x:Class="Tetris.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tetris"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="570" Width="525"
+        KeyDown="HandleKeyDown"
+        Initialized="Window_Initialized">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="btTemplate">
+            <Border CornerRadius="25" 
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="2" 
+                    Background="{TemplateBinding Background}"
+                    Height="{TemplateBinding Height}"
+                    Width="{TemplateBinding Width}">
+                <ContentControl Margin="{TemplateBinding Padding}" 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" 
+                                Content="{TemplateBinding Content}">
+                </ContentControl>
+            </Border>
+            <ControlTemplate.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            To="Blue">
+                            </ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            To="Azure">
+                            </ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Center" Width="172" Margin="0 0 20 0">
+            <Label Content="Score" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+            <Label Content="0" Height="56" Name="Score" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+            
+            <Label Content="Lines" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin=" 0 0 0 0"></Label>
+            <Label Content="0" Height="56" Name="Lines" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+
+            <Button x:Name="contolGameButton" 
+                    Template="{StaticResource btTemplate}" 
+                    BorderBrush="Black"
+                    Background="Azure"
+                    Height="50" 
+                    Width="50"
+                    Focusable="False"
+                    Click="contolGameButton_Click">
+                Start
+            </Button>
+            
+            
+            <Button x:Name="restartGameButton" 
+                    Template="{StaticResource btTemplate}" 
+                    BorderBrush="Black"
+                    Background="Azure"
+                    Height="50" 
+                    Width="50"
+                    Margin="20"
+                    Focusable="False"
+                    Click="restartGameButton_Click">
+                Restart
+            </Button>
+
+            <Label Content="Next tetramino" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+
+            <Grid Name="NextTetraminoGrid" Height="100" Width="120">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </StackPanel>
+        <Grid Name="MainGrid" Height="500" Width="250">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </DockPanel>
+</Window>
